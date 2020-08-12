@@ -25,7 +25,6 @@ class Pessoas(Base):
         db_session.delete(self)
         db_session.commit()
 
-
 class Atividades(Base):
     __tablename__='atividades'
     id = Column(Integer, primary_key=True)
@@ -35,6 +34,23 @@ class Atividades(Base):
 
     def __repr__(self):
         return '<Atividades {}>'.format(self.nome)
+
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
+
+class Usuarios(Base):
+    __tablename__='usuarios'
+    id = Column(Integer, primary_key=True)
+    login = Column(String(20), unique=True)
+    senha = Column(String(20))
+
+    def __repr__(self):
+        return '<Usuario {}>'.format(self.login)
 
     def save(self):
         db_session.add(self)
